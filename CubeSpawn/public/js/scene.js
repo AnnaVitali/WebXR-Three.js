@@ -2,7 +2,7 @@ import * as THREE from 'three';
 import { ARButton} from 'three/addons/webxr/ARButton.js';
 
 let camera, scene, renderer;
-let cube;
+let controller;
 
 init();
 animate()
@@ -28,19 +28,17 @@ function init(){
 
     document.body.appendChild(ARButton.createButton(renderer));
 
-    const geometry = new THREE.BoxGeometry(0.1, 0.1, 0.1);
-    const materials = [
-        new THREE.MeshPhysicalMaterial({ color: 0xff0000}),
-        new THREE.MeshPhysicalMaterial({ color: 0x00ff00}),
-        new THREE.MeshPhysicalMaterial({ color: 0x0000ff}),
-        new THREE.MeshPhysicalMaterial({ color: 0xffff00}),
-        new THREE.MeshPhysicalMaterial({ color: 0x00ffff}),
-        new THREE.MeshPhysicalMaterial({ color: 0xff00ff})
-    ];
-    cube = new THREE.Mesh(geometry, materials);
+    const geometry = new THREE.CylinderGeometry(0, 0.05, 0.2, 32).rotateX(Math.PI / 2);
 
-    scene.add(cube)
-    cube.position.set(0, 0, -0.5);
+    controller = renderer.xr.getController(0);
+    controller.addEventListener('select', () => {
+        const material = new THREE.MeshPhongMaterial( { color: 0xffffff * Math.random() } );
+        const mesh = new THREE.Mesh(geometry, material);
+        mesh.position.set(0, 0, -0.3).applyMatrix4(controller.matrixWorld);
+        mesh.quaternion.setFromRotationMatrix(controller.matrixWorld);
+        scene.add(mesh)
+    });
+    scene.add(controller);
 
     scene.addEventListener('resize', () => {
         camera.aspect = window.innerWidth / window.innerHeight;
@@ -51,9 +49,5 @@ function init(){
 }
 
 function animate(){
-    renderer.setAnimationLoop(() => {
-        cube.rotation.x += 0.01;
-        cube.rotation.y += 0.01
-        renderer.render(scene, camera)
-    });
+    renderer.setAnimationLoop(() => renderer.render(scene, camera));
 }
