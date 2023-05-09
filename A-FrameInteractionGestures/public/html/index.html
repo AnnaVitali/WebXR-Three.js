@@ -1,0 +1,43 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <title>Hello A-Frame</title>
+    <link rel="stylesheet" type="text/css" href="../css/style.css">
+    <script src="https://aframe.io/releases/1.4.0/aframe.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@v6.1.1/dist/aframe-extras.misc.min.js"></script>
+    <script src="https://unpkg.com/super-hands@^3.0.3/dist/super-hands.min.js"></script>
+    <script src="https://unpkg.com/aframe-event-set-component@3.0.3/dist/aframe-event-set-component.min.js"></script>
+</head>
+<body>
+<a-scene environment="preset: default; shadow: true" avatar-recorder
+         touch-to-click-converter>
+    <a-assets>
+        <a-mixin id="cube" geometry="primitive: box; width: 0.5; height: 0.5; depth: 0.5"
+                 hoverable grabbable stretchable draggable droppable
+                 shadow
+                 event-set__dragdrop="_event: drag-drop; geometry.primitive: sphere; geometry.radius: 0.25"
+                 event-set__hoveron="_event: hover-start; material.opacity: 0.7; transparent: true"
+                 event-set__hoveroff="_event: hover-end; material.opacity: 1; transparent: false"
+                 event-set__dragon="_event: dragover-start; material.wireframe: true"
+                 event-set__dragoff="_event: dragover-end; material.wireframe: false">
+        </a-mixin>
+    </a-assets>
+    <a-entity camera wasd-controls position="0 1 1"
+              capture-mouse
+              raycaster="objects: .cube" cursor="rayOrigin:mouse"
+              static-body="shape: sphere; sphereRadius: 0.001"
+              super-hands="colliderEvent: raycaster-intersection;
+                             colliderEventProperty: els;
+                             colliderEndEvent:raycaster-intersection-cleared;
+                             colliderEndEventProperty: clearedEls;">
+    </a-entity>
+    <a-entity class="cube" mixin="cube" position="0 1 -1.25" material="color: red"></a-entity>
+    <a-entity class="cube" mixin="cube" position="0 1.6 -1.5" material="color: red"></a-entity>
+    <a-entity class="cube" mixin="cube" position="-0.9 1 -0.9" material="color: blue"></a-entity>
+    <a-entity class="cube" mixin="cube" position="-1 1.6 -1" material="color: blue"></a-entity>
+    <a-entity class="cube" mixin="cube" position="0.9 1 -0.9" material="color: green"></a-entity>
+    <a-entity class="cube" mixin="cube" position="1 1.6 -1" material="color: green"></a-entity>
+</a-scene>
+</body>
+</html>
