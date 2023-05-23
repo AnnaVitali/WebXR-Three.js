@@ -53,7 +53,7 @@ This example only works for Augmented Reality.
 
 You can find the example inside the directory `MarkerBasedAugmentedReality`.
 
-<img src="img/cube_spawn.gif"  width="200" height="350">
+<img src="img/marker_tracking.gif"  width="200" height="350">
 
 |           | Version |
 |-----------|---------|
