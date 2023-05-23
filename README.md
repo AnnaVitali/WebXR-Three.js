@@ -19,9 +19,7 @@ You can find the example inside the directory `A-FrameInteractionGestures`.
 
 ## A-Frame Mouse Event
 
-This example shows how to make a simple Web-Xr scene using A-Frame. This example also shows how you can get a simple interaction by means of the cursor and the event-set component
-
-It works for both Augmented Reality and Virtual Reality.
+This example shows how to make a simple Web-Xr scene using A-Frame. This example also shows how you can get a simple interaction by means of the cursor and the event-set component, it works for both Augmented Reality and Virtual Reality.
 
 You can find the example inside the directory `A-FrameMouseEvent`.
 
@@ -33,9 +31,9 @@ You can find the example inside the directory `A-FrameMouseEvent`.
 | event_set   | 4.2.1   |
 
 ## Cube Spawn
-This sample shows how three.js can be used to create a WebXR application for augmented reality.
+This sample shows how Three.js can be used to create a WebXR application for Augmented Reality.
 
-This example works only for Augmented Reality.
+It works only for Augmented Reality.
 
 You can find the example inside the directory `CubeSpawn`.
 
