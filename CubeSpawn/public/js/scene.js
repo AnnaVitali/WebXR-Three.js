@@ -28,7 +28,7 @@ function init(){
 
     document.body.appendChild(ARButton.createButton(renderer));
 
-    const geometry = new THREE.CylinderGeometry(0, 0.05, 0.2, 32).rotateX(Math.PI / 2);
+    const geometry = new THREE.BoxGeometry(0.05, 0.05, 0.05);
 
     controller = renderer.xr.getController(0);
     controller.addEventListener('select', () => {
